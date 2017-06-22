@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+<style>
+.container{
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
+button{
+	cursor:pointer;
+}
+
+/*div{
+	border: 1px dashed #eee;
+}*/
+</style>
+  </head>
+  <body>
+<div class="container">
+    <h1>Baumfrage</h1>
+
+
+<div class="card introduction">
+  <div class="card-block">
+    <h4 class="card-title">ohai!</h4>
+<div class="card-text">
+Hallo! Wir sind die Fachschaft! Wir umfragen, um Dinge zu erfahren! Hurra!
+</div>
+<button class="btn btn-primary" onclick="start()">Los los los!</button>
+</div>
+</div>
+
+
+<div class="card question question01">
+  <div class="card-block">
+    <h4 class="card-title">Hast du bereits einen Bachelorabschluss in Informatik?</h4>
+<!--    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+    <p class="card-text">Hast du bereits einen Bachelorabschluss in Informatik?</p>-->
+<div class="form-check">
+  <label class="form-check-label">
+    <input class="form-check-input" type="radio" name="q1" value="q1-currentstudent">
+    Nein, ich studiere noch im Bachelorstudiengang Informatik.
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input class="form-check-input" type="radio" name="q1" value="q1-la">
+    Ja, Lehramt (LA BA Gym Ge).
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input class="form-check-input" type="radio" name="q1" value="q1-formerstudent">
+    Ja, ich habe meinen Bachelorabschluss in Informatik an der Uni Bonn erworben.
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input class="form-check-input" type="radio" name="q1" value="q1-extern">
+    Ja, ich habe meinen Bachelorabschluss in Informatik woanders erworben.
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input class="form-check-input" type="radio" name="q1" value="q1-noob">
+    Nein, ich studiere gar nicht Informatik.
+  </label>
+</div>
+
+<button class="btn btn-primary" onclick="next1()">Weiter!</button>
+  </div>
+</div>
+
+
+
+<!-- if BA -->
+
+<div class="card question question02">
+  <div class="card-block">
+    <h4 class="card-title">In welchem Fachsemester befindest du dich aktuell?</h4>
+
+<select id="q2-fsem">
+
+</select>
+
+</div>
+  <div class="card-block">
+    <h4 class="card-title">Wie viele Leistungspunkte hast du bislang erworben?</h4>
+
+<input id="q2-lp" type="number" min="0" max="250" />
+<br>
+
+<button class="btn btn-primary" onclick="next2()">Weiter!</button>
+
+</div>
+</div>
+
+<!-- if BA -->
+<div class="card question question03">
+  <div class="card-block">
+    <h4 class="card-title">Im wievielten Fachsemester wirst du dein Bachelorstudium voraussichtlich abschließen?</h4>
+
+<!-- ONLY >= PREVIOUS ANSWER -->
+<select id="q3-fsem">
+</select>
+
+
+<button class="btn btn-primary" onclick="next3()">Weiter!</button>
+
+</div>
+</div>
+
+
+<!-- if MA -->
+<div class="card question question04">
+  <div class="card-block">
+    <h4 class="card-title">Im wievielten Fachsemester hast du dein Bachelorstudium abgeschlossen?</h4>
+
+<select id="q4-fsem">
+</select>
+
+<button class="btn btn-primary" onclick="next4()">Weiter!</button>
+
+</div>
+</div>
+
+
+<div class="card question question05">
+  <div class="card-block" id="q5-longer">
+    <h4 class="card-title">Wodurch hat sich dein Bachelorstudium verlängert?</h4>
+
+<div class="form-check">
+  <label class="form-check-label">
+    <input class="form-check-input" type="checkbox"value="">
+    Zulassung zu mindestens einer Modulabschlussprüfung nicht geschafft
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input class="form-check-input" type="checkbox" value="">
+    Mindestens ein Modul nicht bestanden
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input class="form-check-input" type="checkbox" value="">
+    Module in spätere Semester verschoben
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input class="form-check-input" type="checkbox" value="">
+    Probleme mit dem Nebenfach
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input class="form-check-input" type="checkbox" value="">
+    Ungünstige Modulabhängigkeiten
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input class="form-check-input" type="checkbox" value="">
+    Notenverbesserung in mindestens einem Pflichtmodul
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input class="form-check-input" type="checkbox" value="">
+    Mehr Wahlpflichtmodule als nötig besucht / zweite Projektgruppe belegt
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input class="form-check-input" type="checkbox" value="">
+    Projektgruppe hat zu lange gedauert
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input class="form-check-input" type="checkbox" value="">
+    Thema der Bachelorarbeit wurde einmal zurückgegeben / Bachelorarbeit wurde einmal nicht bestanden
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input class="form-check-input" type="checkbox" value="">
+    Belastung durch Nebenjob
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input class="form-check-input" type="checkbox" value="">
+    Familiäre Gründe
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input class="form-check-input" type="checkbox" value="">
+    Ich hatte nie vor, in Regelstudienzeit fertig zu werden
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input class="form-check-input" type="checkbox" value="">
+    Weiteres:
+  </label>
+</div>
+</div>
+
+  <div class="card-block">
+    <h4 class="card-title">Welche dieser Dinge treffen auf dich zu, haben dein Studium aber nicht verlängert?</h4>
+
+<div class="form-check">
+  <label class="form-check-label">
+    <input class="form-check-input" type="checkbox"value="">
+    Zulassung zu mindestens einer Modulabschlussprüfung nicht geschafft
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input class="form-check-input" type="checkbox" value="">
+    Mindestens ein Modul nicht bestanden
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input class="form-check-input" type="checkbox" value="">
+    Module in spätere Semester verschoben
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input class="form-check-input" type="checkbox" value="">
+    Probleme mit dem Nebenfach
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input class="form-check-input" type="checkbox" value="">
+    Ungünstige Modulabhängigkeiten
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input class="form-check-input" type="checkbox" value="">
+    Notenverbesserung in mindestens einem Pflichtmodul
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input class="form-check-input" type="checkbox" value="">
+    Mehr Wahlpflichtmodule als nötig besucht / zweite Projektgruppe belegt
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input class="form-check-input" type="checkbox" value="">
+    Projektgruppe hat zu lange gedauert
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input class="form-check-input" type="checkbox" value="">
+    Thema der Bachelorarbeit wurde einmal zurückgegeben / Bachelorarbeit wurde einmal nicht bestanden
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input class="form-check-input" type="checkbox" value="">
+    Belastung durch Nebenjob
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input class="form-check-input" type="checkbox" value="">
+    Familiäre Gründe
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input class="form-check-input" type="checkbox" value="">
+    Ich hatte nie vor, in Regelstudienzeit fertig zu werden
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input class="form-check-input" type="checkbox" value="">
+    Weiteres:
+  </label>
+</div>
+
+<button class="btn btn-primary" onclick="next6()">Weiter!</button>
+
+</div>
+</div>
+
+
+
+<div class="card question question07">
+  <div class="card-block">
+    <h4 class="card-title">Wie steht's mit der Bachelorarbeit?</h4>
+
+
+<div class="form-check">
+  <label class="form-check-label">
+    <input class="form-check-input" type="radio" name="q7" value="currentlyworking">
+    Ich arbeite aktuell an meiner Bachelorarbeit
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input class="form-check-input" type="radio" name="q7" value="">
+    Ich suche derzeit eine Betreuung und ein Thema für meine Bachelorarbeit
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input class="form-check-input" type="radio" name="q7" value="">
+    Ich suche derzeit mit meiner Betreuung ein Thema für meine Bachelorarbeit
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input class="form-check-input" type="radio" name="q7" value="">
+    Ich habe bereits ein Thema und suche dafür eine Betreuung
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input class="form-check-input" type="radio" name="q7" value="">
+    Nichts von alldem
+  </label>
+</div>
+
+<button class="btn btn-primary" onclick="next7()">Weiter!</button>
+
+</div>
+</div>
+
+<!-- if MA or BAPG -->
+
+<div class="card question question08">
+  <div class="card-block">
+    <h4 class="card-title">Hat die Bachelorarbeit sich aus einer Projektgruppe ergeben?</h4>
+
+
+<div class="form-check">
+  <label class="form-check-label">
+    <input class="form-check-input" type="radio" name="q6" value="">
+    Ja, Thema und Betreuung blieben gleich
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input class="form-check-input" type="radio" name="q6" value="">
+    Ja, ein anderes Thema unter der gleichen Betreuung
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input class="form-check-input" type="radio" name="q6" value="">
+    Ja, ein ähnliches Thema unter anderer Betreuung
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input class="form-check-input" type="radio" name="q6" value="">
+    Jein, mir wurden anderes Thema und Betreuung vermittelt
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input class="form-check-input" type="radio" name="q6" value="">
+    Nein.
+  </label>
+</div>
+
+<button class="btn btn-primary" onclick="next8()">Weiter!</button>
+
+</div>
+</div>
+
+<div class="card goodbye">
+  <div class="card-block">
+    <h4 class="card-title">Ende</h4>
+<div class="card-text">
+ok tschau
+</div>
+</div>
+</div>
+
+
+</div>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+<script>
+var notforyou = false;
+var currentba = false;
+var currentma = false;
+var islate = false;
+
+var semesterangabe = ["-","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15",">15"];
+
+$(function(){
+
+	$(semesterangabe).each(function(item){
+		$('#q2-fsem').append('<option value="'+semesterangabe[item]+'">'+semesterangabe[item]+'</option>');
+		$('#q3-fsem').append('<option value="'+semesterangabe[item]+'">'+semesterangabe[item]+'</option>');
+		$('#q4-fsem').append('<option value="'+semesterangabe[item]+'">'+semesterangabe[item]+'</option>');
+	});
+
+	$('.question').hide();
+	$('.goodbye').hide();
+	$('.introduction').show();
+
+});
+
+function start(){
+	$('.introduction').hide(400);
+	$('.question01').show(400);
+}function next1(){
+
+	let val = $('input[name=q1]:checked').val();
+
+	if(val == undefined){
+		alert("Bitte wähle eine Option aus :(((((");
+	} else {
+		if(val == "q1-extern" || val == "q1-noob" || val == "q1-la"){
+			notforyou = true;
+		}
+		if(val == "q1-currentstudent"){
+			currentba = true;
+		}
+		if(val == "q1-formerstudent"){
+			currentma = true;
+		}
+	}
+
+
+	if(currentba){
+		$('.question01').hide(400);
+		$('.question02').show(400);
+	}
+	if(currentma){
+		$('.question01').hide(400);
+		$('.question04').show(400);
+	}
+	if(notforyou){
+		$('.question01').hide(400);
+		$('.goodbye').show(400);
+	}
+}
+function next2(){
+	let fsem = $('#q2-fsem').val();
+
+	let currentlp = $('#q2-lp').val();
+
+	
+	if(fsem == "-"){
+		alert("Bitte wähle ein Fachsemester aus :(((((");
+	}else if(currentlp == ""){
+		alert("Bitte gib eine Leistungspunktanzahl ein :(((((");
+	} else {
+
+		let fsemindex = semesterangabe.indexOf(fsem);
+		if(fsemindex == -1){
+			alert("HACKER!!!");
+		} else {
+			let endsemesterangabe = semesterangabe.slice(fsemindex);
+			$('#q3-fsem').html('');
+			$(endsemesterangabe).each(function(item){
+				$('#q3-fsem').append('<option value="'+endsemesterangabe[item]+'">'+endsemesterangabe[item]+'</option>');
+			});
+
+			$('.question02').hide(400);
+			$('.question03').show(400);	
+		}
+	}
+}
+function next3(){
+	let endsem = $('#q3-fsem').val();
+
+	let rszindex = semesterangabe.indexOf("6");
+	let endsemindex = semesterangabe.indexOf(endsem);
+	
+	if(rszindex >= endsemindex){
+		$('#q5-longer').hide();
+	}
+
+	$('.question03').hide(400);
+	$('.question05').show(400);
+}
+function next4(){	
+	let endsem = $('#q4-fsem').val();
+	
+	let rszindex = semesterangabe.indexOf("6");
+	let endsemindex = semesterangabe.indexOf(endsem);
+	
+	if(rszindex >= endsemindex){
+		$('#q5-longer').hide();
+	}
+
+	$('.question04').hide(400);
+	$('.question05').show(400);
+}
+function next6(){
+	$('.question05').hide(400);
+
+	if(currentba){
+		$('.question07').show(400);
+	}
+	if(currentma){
+		$('.question08').show(400);
+	}
+}
+function next7(){
+
+	let selection = $('input[name=q7]:checked').val();
+
+alert(selection);
+
+
+	$('.question07').hide(400);
+
+	if(selection == "currentlyworking"){
+	$('.question08').show(400);
+	} else {
+		$('.goodbye').show(400);
+	}
+}
+function next8(){
+	$('.question08').hide(400);
+	$('.goodbye').show(400);
+}
+
+</script>
+  </body>
+</html>
