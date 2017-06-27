@@ -23,20 +23,33 @@ button{
   </head>
   <body>
 <div class="container">
-    <h1>Baumfrage</h1>
+<div class="row">
+	<div class="col-9">
+		<h1>Baumfrage</h1>
+		<h4>nicht nur für Bäume</h4>
+	</div>
+	<div class="col">
+		<p class="text-right"><img src="img/wusel.png" /></p>
+	</div>
+</div>
 
 
 	<div class="card introduction">
 		<div class="card-block">
 			<h4 class="card-title">ohai!</h4>
 			<div class="card-text">
-				Hallo! Wir sind die Fachschaft! Wir umfragen, um Dinge zu erfahren! Hurra!
+				<div class="row">
+					<div class="col">
+						<p>Hallo! Wir sind die Fachschaft! Wir umfragen, um Dinge zu erfahren! Hurra!</p>
+						<p>Obacht! Alle Angaben sind anonym und freiwillig.</p>
+					</div>
+					<div class="col">
+						<p class="text-center"><img src="img/wusel_lehre.png" /></p>
+					</div>
+				</div>
 			</div>
 			<div class="card-text">
-			Obacht! Alle Angaben sind anonym und freiwillig.
-			</div>
-			<div class="card-text">
-				<button class="btn btn-success btn-block" onclick="start()">Los los los!</button>
+				<button class="btn btn-success btn-block btn-lg" onclick="start()">Los los los!</button>
 			</div>
 		</div>
 	</div>
@@ -487,10 +500,23 @@ button{
 		</div>
 	</div>
 
+	<div class="card sendresult">
+		<div class="card-block">
+			<h4 class="card-title">Fast geschafft!</h4>
+			<div class="card-text" id="sendbutton">
+				<button class="btn btn-primary" onclick="collect_data()">Daten absenden</button>
+			</div>
+			<div class="card-text" id="transmitgif">
+				<p class="text-left"><img src="img/wusel_transmit.gif" /></p>
+			</div>
+		</div>
+	</div>
 	<div class="card goodbye">
 		<div class="card-block">
-			<h4 class="card-title">Ende</h4>
-			<div class="card-text" onclick="collect_data()">
+			<h4 class="card-title">Danke!</h4>
+			<div class="card-text" id="transmitresult">
+			</div>
+			<div class="card-text">
 				ok tschau
 			</div>
 		</div>
@@ -518,7 +544,11 @@ $(function(){
 
 	$('.question').hide();
 	$('.additional-information').hide();
+	$('.sendresult').hide();
 	$('.goodbye').hide();
+	$('#transmitgif').hide();
+	$('#transmitresult').hide();
+	$('#aurevoir').hide();
 	$('.introduction').show();
 	
 	$('input[type=checkbox]').click(function(){
@@ -601,7 +631,7 @@ function next3(){
 	let endsemindex = semesterangabe.indexOf(endsem);
 	
 	if(rszindex >= endsemindex){
-		$('#q5-longer').hide();
+		$('#q5').hide();
 	}
 
 	$('.question03').hide(400);
@@ -614,7 +644,7 @@ function next4(){
 	let endsemindex = semesterangabe.indexOf(endsem);
 	
 	if(rszindex >= endsemindex){
-		$('#q5-longer').hide();
+		$('#q5').hide();
 	}
 
 	$('.question04').hide(400);
@@ -640,16 +670,19 @@ function next7(){
 	if(selection == "q7-currentlyworking"){
 	$('.question08').show(400);
 	} else {
-		$('.goodbye').show(400);
+		$('.sendresult').show(400);
 	}
 }
 function next8(){
 	$('.question08').hide(400);
-	$('.goodbye').show(400);
+	$('.sendresult').show(400);
 }
 
 
 function collect_data(){
+
+	$('#sendbutton').hide(100);
+	$('#transmitgif').show(100);
 	// q1
 	let q1 = $('input[name=q1]:checked').val();
 	// q2
@@ -680,7 +713,6 @@ function collect_data(){
 	
 	checked_items_5.each(function(index, element){
 		let id = element.value;
-		console.log(id);
 		q5[id].checked = true;
 		q5[id].extra = $('#'+id+"-extra").val();
 	});
@@ -715,10 +747,26 @@ function collect_data(){
 	// q8
 	let q8 = $('input[name=q8]:checked').val();
 	
+	if(q1 === undefined){
+		q1 = "none";
+	}
+	if(q7 === undefined){
+		q7 = "none";
+	}
+	if(q8 === undefined){
+		q8 = "none";
+	}
+	
 	let data = {"q1":q1,"q2_fsem":q2_fsem,"q2_lp":q2_lp,"q3":q3,"q4":q4,"q5":q5,"q6":q6,"q7":q7,"q8":q8};
 	
-	console.log(data);
-	return data;
+	setTimeout(function(){
+		$.post("data.php", data, function(retval){
+			$('#transmitresult').text(retval);
+			$('.sendresult').hide(400);
+			$('#transmitresult').show(400);
+			$('.goodbye').show(400);
+		});
+	}, 1000);
 }
 
 </script>
