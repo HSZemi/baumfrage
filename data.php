@@ -1,8 +1,8 @@
 <?php 
 
-$indexes = ['q1','q2_fsem','q2_lp','q3','q4','q5','q6','q7','q8'];
+$indexes = Array('q1','q2_fsem','q2_lp','q3','q4','q5','q6','q7','q8');
 
-$subindexes = ['q5' => ['q5-failed-admission',
+$subindexes = Array('q5' => Array('q5-failed-admission',
 			'q5-failed-module',
 			'q5-moved-module',
 			'q5-minor-subject',
@@ -15,8 +15,8 @@ $subindexes = ['q5' => ['q5-failed-admission',
 			'q5-family',
 			'q5-planned',
 			'q5-other'
-			],
-		'q6' => ['q6-failed-admission',
+			),
+		'q6' => Array('q6-failed-admission',
 			'q6-failed-module',
 			'q6-moved-module',
 			'q6-minor-subject',
@@ -29,8 +29,8 @@ $subindexes = ['q5' => ['q5-failed-admission',
 			'q6-family',
 			'q6-planned',
 			'q6-other'
-			]
-		];
+			)
+		);
 
 foreach($indexes as $index){
 	if (!isset($_POST[$index])){
