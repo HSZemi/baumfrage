@@ -1,5 +1,19 @@
 <?php 
 
+function getDailyId(){
+	$data = unserialize(file_get_contents('data/dailyid'));
+
+	$today = date("Ymd");
+	
+	if($data === false || $data['date'] != $today){
+		$data['date'] = $today;
+		$data['dailyid'] = uniqid();
+		file_put_contents('data/dailyid', serialize($data));
+	}
+	
+	return $data['dailyid'];
+}
+
 $indexes = Array('q1','q2_fsem','q2_lp','q3','q4','q5','q6','q7','q8');
 
 $subindexes = Array('q5' => Array('q5-failed-admission',
@@ -55,6 +69,10 @@ foreach($subindexes as $index){
 		}
 	}
 }
+$userid = hash("sha256", $_SERVER['REMOTE_ADDR'].getDailyId());
+
+$_POST['timestamp'] = time();
+$_POST['userid'] = $userid;
 
 $encoded = json_encode($_POST);
 $filename = "data/".uniqid().".json";

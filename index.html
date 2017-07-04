@@ -4,6 +4,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Befragung zum Studienfortschritt</title>
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -15,18 +16,14 @@
 button{
 	cursor:pointer;
 }
-
-/*div{
-	border: 1px dashed #eee;
-}*/
 </style>
   </head>
   <body>
 <div class="container">
 <div class="row">
 	<div class="col-9">
-		<h1>Baumfrage</h1>
-		<h4>nicht nur für Bäume</h4>
+		<h1>Befragung zum Studienfortschritt</h1>
+		<h4>Es ist so schön hier, deshalb will niemand fertig werden.</h4>
 	</div>
 	<div class="col">
 		<p class="text-right"><img src="img/wusel.png" /></p>
@@ -36,7 +33,7 @@ button{
 
 	<div class="card introduction">
 		<div class="card-block">
-			<h4 class="card-title">ohai!</h4>
+			<h4 class="card-title">Ohai!</h4>
 			<div class="card-text">
 				<div class="row">
 					<div class="col">
@@ -55,7 +52,7 @@ button{
 	</div>
 
 
-	<div class="card question question01">
+	<div class="card question question01">1
 		<div class="card-block">
 			<h4 class="card-title">Hast du bereits einen Bachelorabschluss in Informatik?</h4>
 			<div class="form-check">
@@ -72,20 +69,20 @@ button{
 			</div>
 			<div class="form-check">
 				<label class="form-check-label">
-					<input class="form-check-input" type="radio" name="q1" value="q1-teacher">
-					Ja, Lehramt (LA BA Gym Ge).
+					<input class="form-check-input" type="radio" name="q1" value="q1-formerteacher">
+					Ja, ich habe meinen Bachelorabschluss im Lehramt Informatik (LA BA Gym Ge) an der Uni Bonn erworben.
 				</label>
 			</div>
 			<div class="form-check">
 				<label class="form-check-label">
 					<input class="form-check-input" type="radio" name="q1" value="q1-formerstudent">
-					Ja, ich habe meinen Bachelorabschluss in Informatik an der Uni Bonn erworben.
+					Ja, ich habe meinen Bachelorabschluss in Informatik (B.Sc.) an der Uni Bonn erworben.
 				</label>
 			</div>
 			<div class="form-check">
 				<label class="form-check-label">
 					<input class="form-check-input" type="radio" name="q1" value="q1-external">
-					Ja, ich habe meinen Bachelorabschluss in Informatik woanders erworben.
+					Ja, ich habe meinen Bachelorabschluss woanders erworben.
 				</label>
 			</div>
 			<div class="form-check">
@@ -103,7 +100,7 @@ button{
 
 	<!-- if BA -->
 
-	<div class="card question question02">
+	<div class="card question question02">2
 		<div class="card-block">
 			<h4 class="card-title">In welchem Fachsemester befindest du dich aktuell?</h4>
 
@@ -111,17 +108,18 @@ button{
 			</select>
 		</div>
 		<div class="card-block">
-			<h4 class="card-title">Wie viele Leistungspunkte hast du bislang erworben?</h4>
+			<h4 class="card-title">Wie viele Leistungspunkte hast du bislang <span class="onlyteacher">in Informatik</span> erworben?</h4>
 
 			<input id="q2-lp" type="number" min="0" max="250" />
 		</div>
 		<div class="card-block">
 			<button class="btn btn-primary" onclick="next2()">Weiter!</button>
+			<button class="btn btn-default" onclick="back2()">Zurück</button>
 		</div>
 	</div>
 
 	<!-- if BA -->
-	<div class="card question question03">
+	<div class="card question question03">3
 		<div class="card-block">
 			<h4 class="card-title">Im wievielten Fachsemester wirst du dein Bachelorstudium voraussichtlich abschließen?</h4>
 
@@ -130,12 +128,13 @@ button{
 			</select>
 
 			<button class="btn btn-primary" onclick="next3()">Weiter!</button>
+			<button class="btn btn-default" onclick="back3()">Zurück</button>
 		</div>
 	</div>
 
 
 	<!-- if MA -->
-	<div class="card question question04">
+	<div class="card question question04">4
 		<div class="card-block">
 			<h4 class="card-title">Im wievielten Fachsemester hast du dein Bachelorstudium abgeschlossen?</h4>
 
@@ -143,12 +142,13 @@ button{
 			</select>
 
 			<button class="btn btn-primary" onclick="next4()">Weiter!</button>
+			<button class="btn btn-default" onclick="back4()">Zurück</button>
 
 		</div>
 	</div>
 
 
-	<div class="card question question05">
+	<div class="card question question05">5
 		<div class="card-block" id="q5">
 			<h4 class="card-title">Wodurch hat sich dein Bachelorstudium verlängert?</h4>
 
@@ -188,11 +188,15 @@ button{
 			<div class="form-check">
 				<label class="form-check-label">
 					<input class="form-check-input" type="checkbox" name="q5" value="q5-minor-subject">
-					Probleme mit dem Nebenfach
+					<span class="notteacher">Probleme mit dem Nebenfach</span>
+					<span class="onlyteacher">Probleme mit dem ersten Lehramtsfach</span>
 				</label>
 			</div>
 			<div class="form-group additional-information">
-				<label for="q5-minor-subject-extra">Welches Nebenfach machte Probleme?</label>
+				<label for="q5-minor-subject-extra">
+					<span class="notteacher">Welches Nebenfach machte Probleme?</span>
+					<span class="onlyteacher">Welches ist dein erstes Lehramtsfach?</span>
+				</label>
 				<textarea class="form-control" id="q5-minor-subject-extra" rows="3"></textarea>
 			</div>
 			
@@ -221,7 +225,14 @@ button{
 			<div class="form-check">
 				<label class="form-check-label">
 					<input class="form-check-input" type="checkbox" name="q5" value="q5-modules-o-plenty">
-					Mehr Wahlpflichtmodule als nötig besucht / zweite Projektgruppe belegt
+					Mehr Wahlpflichtmodule als nötig besucht
+				</label>
+			</div>
+			
+			<div class="form-check">
+				<label class="form-check-label">
+					<input class="form-check-input" type="checkbox" name="q5" value="q5-pg2">
+					Zweite Projektgruppe belegt
 				</label>
 			</div>
 			
@@ -246,14 +257,18 @@ button{
 			<div class="form-check">
 				<label class="form-check-label">
 					<input class="form-check-input" type="checkbox" name="q5" value="q5-job">
-					Belastung durch Nebenjob
+					Belastung durch Nebenjob oder Beruf
 				</label>
+			</div>
+			<div class="form-group additional-information">
+				<label for="q5-job-extra">Wie viele Stunden pro Woche wird/wurde durchschnittlich gearbeitet?</label>
+				<textarea class="form-control" id="q5-job-extra" rows="1"></textarea>
 			</div>
 			
 			<div class="form-check">
 				<label class="form-check-label">
 					<input class="form-check-input" type="checkbox" name="q5" value="q5-family">
-					Familiäre Gründe
+					Familiäre oder persönliche Gründe
 				</label>
 			</div>
 			
@@ -352,7 +367,14 @@ button{
 			<div class="form-check">
 				<label class="form-check-label">
 					<input class="form-check-input" type="checkbox" name="q6" value="q6-modules-o-plenty">
-					Mehr Wahlpflichtmodule als nötig besucht / zweite Projektgruppe belegt
+					Mehr Wahlpflichtmodule als nötig besucht
+				</label>
+			</div>
+			
+			<div class="form-check">
+				<label class="form-check-label">
+					<input class="form-check-input" type="checkbox" name="q6" value="q6-pg2">
+					Zweite Projektgruppe belegt
 				</label>
 			</div>
 			
@@ -377,14 +399,18 @@ button{
 			<div class="form-check">
 				<label class="form-check-label">
 					<input class="form-check-input" type="checkbox" name="q6" value="q6-job">
-					Belastung durch Nebenjob
+					Belastung durch Nebenjob oder Beruf
 				</label>
+			</div>
+			<div class="form-group additional-information">
+				<label for="q6-job-extra">Wie viele Stunden pro Woche wird/wurde durchschnittlich gearbeitet?</label>
+				<textarea class="form-control" id="q6-job-extra" rows="1"></textarea>
 			</div>
 			
 			<div class="form-check">
 				<label class="form-check-label">
 					<input class="form-check-input" type="checkbox" name="q6" value="q6-family">
-					Familiäre Gründe
+					Familiäre oder persönliche Gründe
 				</label>
 			</div>
 			
@@ -412,12 +438,13 @@ button{
 		</div>
 		<div class="card-block">
 			<button class="btn btn-primary" onclick="next6()">Weiter!</button>
+			<button class="btn btn-default" onclick="back6()">Zurück</button>
 		</div>
 	</div>
 
 
 
-	<div class="card question question07">
+	<div class="card question question07">7
 		<div class="card-block">
 			<h4 class="card-title">Wie steht's mit der Bachelorarbeit?</h4>
 
@@ -453,13 +480,14 @@ button{
 			</div>
 
 			<button class="btn btn-primary" onclick="next7()">Weiter!</button>
+			<button class="btn btn-default" onclick="back7()">Zurück</button>
 
 		</div>
 	</div>
 
 	<!-- if MA or BAPG -->
 
-	<div class="card question question08">
+	<div class="card question question08">8
 		<div class="card-block">
 			<h4 class="card-title">Hat die Bachelorarbeit sich aus einer Projektgruppe ergeben?</h4>
 
@@ -496,6 +524,7 @@ button{
 			</div>
 
 			<button class="btn btn-primary" onclick="next8()">Weiter!</button>
+			<button class="btn btn-default" onclick="back8()">Zurück</button>
 
 		</div>
 	</div>
@@ -505,6 +534,7 @@ button{
 			<h4 class="card-title">Fast geschafft!</h4>
 			<div class="card-text" id="sendbutton">
 				<button class="btn btn-primary" onclick="collect_data()">Daten absenden</button>
+			<button class="btn btn-default" onclick="back9()">Zurück</button>
 			</div>
 			<div class="card-text" id="transmitgif">
 				<p class="text-left"><img src="img/wusel_transmit.gif" /></p>
@@ -527,12 +557,59 @@ button{
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
 <script>
-var notforyou = false;
-var currentba = false;
-var currentma = false;
-var islate = false;
+
+function notforyou(){
+	let val = $('input[name=q1]:checked').val();
+	return(val === "q1-external" || val == "q1-other");
+}
+function currentba(){
+	let val = $('input[name=q1]:checked').val();
+	return (val === "q1-currentstudent" || val == "q1-teacher");
+}
+function currentma(){
+	let val = $('input[name=q1]:checked').val();
+	return (val === "q1-formerstudent" || val == "q1-formerteacher");
+}
+
+function isteacher(){
+	let val = $('input[name=q1]:checked').val();
+	return (val === "q1-teacher" || val == "q1-formerteacher");
+}
+
+function isnotlate(){
+	let endsem = $('#q3-fsem').val();
+	if(endsem === "-"){
+		endsem = $('#q4-fsem').val();
+	}
+	
+	let rszindex = semesterangabe.indexOf("6");
+	let endsemindex = semesterangabe.indexOf(endsem);
+	
+	if(endsemindex === -1){
+		return false;
+	}
+	
+	return (rszindex >= endsemindex);
+}
+
+function toggleTeacher(){
+	if(isteacher()){
+		$('.onlyteacher').show();
+		$('.notteacher').hide();
+	} else {
+		$('.onlyteacher').hide();
+		$('.notteacher').show();
+	}
+}
 
 var semesterangabe = ["-","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15",">15"];
+
+function resetfsem(id){
+	$(id).html("");
+	$(semesterangabe).each(function(item){
+		$(id).append('<option value="'+semesterangabe[item]+'">'+semesterangabe[item]+'</option>');
+	});
+}
 
 $(function(){
 
@@ -569,48 +646,40 @@ function start(){
 
 	if(val == undefined){
 		alert("Bitte wähle eine Option aus :(((((");
-	} else {
-		if(val == "q1-external" || val == "q1-other" || val == "q1-teacher"){
-			notforyou = true;
-		}
-		if(val == "q1-currentstudent"){
-			currentba = true;
-		}
-		if(val == "q1-formerstudent"){
-			currentma = true;
-		}
 	}
+	
+	toggleTeacher();
 
-
-	if(currentba){
+	if(currentba()){
 		$('.question01').hide(400);
 		$('.question02').show(400);
 	}
-	if(currentma){
+	if(currentma()){
 		$('.question01').hide(400);
 		$('.question04').show(400);
 	}
-	if(notforyou){
+	if(notforyou()){
 		$('.question01').hide(400);
 		$('.goodbye').show(400);
 	}
 }
+
 function next2(){
 	let fsem = $('#q2-fsem').val();
+	
 
 	let currentlp = parseInt($('#q2-lp').val());
-
 	
-	if(fsem == "-"){
+	if(fsem === "-"){
 		alert("Bitte wähle ein Fachsemester aus :(((((");
-	}else if(currentlp == ""){
+	}else if(currentlp === ""){
 		alert("Bitte gib eine Leistungspunktanzahl ein :(((((");
 	} else if(currentlp < parseInt($('#q2-lp').attr('min')) || currentlp > parseInt($('#q2-lp').attr('max'))){
 		alert("Bitte gib eine Zahl zwischen "+ $('#q2-lp').attr('min')+" und "+$('#q2-lp').attr('max')+" ein :((( ["+currentlp+"]");
 	}else {
 
 		let fsemindex = semesterangabe.indexOf(fsem);
-		if(fsemindex == -1){
+		if(fsemindex === -1){
 			alert("HACKER!!!");
 		} else {
 			let endsemesterangabe = semesterangabe.slice(fsemindex);
@@ -618,46 +687,76 @@ function next2(){
 			$(endsemesterangabe).each(function(item){
 				$('#q3-fsem').append('<option value="'+endsemesterangabe[item]+'">'+endsemesterangabe[item]+'</option>');
 			});
+			
+			resetfsem('#q4-fsem');
 
 			$('.question02').hide(400);
 			$('.question03').show(400);	
 		}
 	}
 }
-function next3(){
-	let endsem = $('#q3-fsem').val();
 
-	let rszindex = semesterangabe.indexOf("6");
-	let endsemindex = semesterangabe.indexOf(endsem);
+function back2(){
+	$('.question02').hide(400);
+	$('.question01').show(400);
+}
+
+function next3(){
 	
-	if(rszindex >= endsemindex){
+	if(isnotlate()){
+		$('input[name=q5]').prop("checked", false);
+		$('#q5 .additional-information').hide();
 		$('#q5').hide();
+	} else {
+		$('#q5').show();
 	}
 
 	$('.question03').hide(400);
 	$('.question05').show(400);
 }
+function back3(){
+	$('.question03').hide(400);
+	$('.question02').show(400);
+}
+
 function next4(){	
-	let endsem = $('#q4-fsem').val();
 	
-	let rszindex = semesterangabe.indexOf("6");
-	let endsemindex = semesterangabe.indexOf(endsem);
+	resetfsem('#q2-fsem');
+	$('#q2-lp').val("");
+	resetfsem('#q3-fsem');
 	
-	if(rszindex >= endsemindex){
+	if(isnotlate()){
+		$('input[name=q5]').prop("checked", false);
+		$('#q5 .additional-information').hide();
 		$('#q5').hide();
+	} else {
+		$('#q5').show();
 	}
+	
 
 	$('.question04').hide(400);
 	$('.question05').show(400);
 }
+function back4(){
+	$('.question04').hide(400);
+	$('.question01').show(400);
+}
 function next6(){
 	$('.question05').hide(400);
 
-	if(currentba){
+	if(currentba()){
 		$('.question07').show(400);
 	}
-	if(currentma){
+	if(currentma()){
+		$('input[name=q7]').prop("checked", false);
 		$('.question08').show(400);
+	}
+}function back6(){
+	$('.question05').hide(400);
+	if(currentba()){
+		$('.question03').show(400);
+	} else {
+		$('.question04').show(400);
 	}
 }
 function next7(){
@@ -668,14 +767,39 @@ function next7(){
 	$('.question07').hide(400);
 
 	if(selection == "q7-currentlyworking"){
-	$('.question08').show(400);
+		$('.question08').show(400);
 	} else {
+		$('input[name=q8]').prop("checked", false);
 		$('.sendresult').show(400);
 	}
 }
+function back7(){
+	$('.question07').hide(400);
+	$('.question05').show(400);
+}
 function next8(){
+	
+
 	$('.question08').hide(400);
 	$('.sendresult').show(400);
+}
+function back8(){
+	$('.question08').hide(400);
+	
+	if(currentba()){
+		$('.question07').show(400);
+	} else {
+		$('.question05').show(400);
+	}
+}
+function back9(){
+	$('.sendresult').hide(400);
+	
+	if($('input[name=q8]:checked')){
+		$('.question08').show(400);
+	} else {
+		$('.question07').show(400);
+	}
 }
 
 
@@ -701,6 +825,7 @@ function collect_data(){
 		"q5-dependencies":{"checked":false,"extra":""},
 		"q5-grade-improvement":{"checked":false,"extra":""},
 		"q5-modules-o-plenty":{"checked":false,"extra":""},
+		"q5-pg2":{"checked":false,"extra":""},
 		"q5-long-project-group":{"checked":false,"extra":""},
 		"q5-thesis-problems":{"checked":false,"extra":""},
 		"q5-job":{"checked":false,"extra":""},
@@ -727,6 +852,7 @@ function collect_data(){
 		"q6-dependencies":{"checked":false,"extra":""},
 		"q6-grade-improvement":{"checked":false,"extra":""},
 		"q6-modules-o-plenty":{"checked":false,"extra":""},
+		"q6-pg2":{"checked":false,"extra":""},
 		"q6-long-project-group":{"checked":false,"extra":""},
 		"q6-thesis-problems":{"checked":false,"extra":""},
 		"q6-job":{"checked":false,"extra":""},
