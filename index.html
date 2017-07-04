@@ -119,7 +119,7 @@ button{
 		<div class="card-block">
 			<h4 class="card-title">Wie viele Leistungspunkte hast du bislang <span class="onlyteacher">in Informatik</span> erworben?</h4>
 
-			<input id="q2-lp" type="number" min="0" max="250" />
+			<input id="q2-lp" type="number" min="-1" max="250" />
 			
 			<p class="small">»<a href="https://basis.uni-bonn.de" target="_blank">Oh, da muss ich nachsehen!</a>«</p>
 		</div>
@@ -345,11 +345,15 @@ button{
 			<div class="form-check">
 				<label class="form-check-label">
 					<input class="form-check-input" type="checkbox" name="q6" value="q6-minor-subject">
-					Probleme mit dem Nebenfach
+					<span class="notteacher">Probleme mit dem Nebenfach</span>
+					<span class="onlyteacher">Probleme mit dem ersten Lehramtsfach</span>
 				</label>
 			</div>
 			<div class="form-group additional-information">
-				<label for="q6-minor-subject-extra">Welches Nebenfach machte Probleme?</label>
+				<label for="q6-minor-subject-extra">
+					<span class="notteacher">Welches Nebenfach machte Probleme?</span>
+					<span class="onlyteacher">Welches ist dein erstes Lehramtsfach?</span>
+				</label>
 				<textarea class="form-control" id="q6-minor-subject-extra" rows="3"></textarea>
 			</div>
 			
@@ -558,9 +562,11 @@ button{
 			<div class="card-text notforyou">
 				<p>Es freut uns, dass du uns auf unserer Mission unterstützen willst. Leider passt dein Studienverlauf nicht in unsere Befragung.</p>
 				
-				<p>Falls du uns unabhängig davon etwas mitteilen möchtest, kannst du das naürlich gerne tun!</p> 
+				<p>Falls du uns unabhängig davon etwas mitteilen möchtest, kannst du das natürlich gerne tun!</p> 
 				
-				<a href="https://www.fachschaft.info">Kontaktmöglichkeiten? Links in der Sidebar!</a>
+				<p><a href="https://www.fachschaft.info">Kontaktmöglichkeiten? Auf unserer Hauptseite links in der Sidebar!</a></p>
+				
+				<p class="einschreibehinweis" style="font-style: italic;">Noch nicht Informatik studiert? <a href="https://www.uni-bonn.de/studium/vor-dem-studium/bewerbung-zulassung/wie-schreibe-ich-mich-ein#zulassungsfrei" target="_blank">Schreib dich zum Wintersemester ein!</a></p>
 			</div>
 			<div class="card-text genericthanks">
 				<p class="badge badge-default">Der Server sagt: <span  id="transmitresult"></span></p>
@@ -569,7 +575,7 @@ button{
 				
 				<p>Falls du uns unabhängig davon etwas mitteilen möchtest, kannst du das naürlich gerne tun!</p> 
 				
-				<a href="https://www.fachschaft.info">Kontaktmöglichkeiten? Links in der Sidebar!</a>
+				<a href="https://www.fachschaft.info">Kontaktmöglichkeiten? Auf unserer Hauptseite links in der Sidebar!</a>
 			</div>
 		</div>
 	</div>
@@ -671,6 +677,12 @@ function start(){
 	}
 	
 	toggleTeacher();
+	
+	if($('input[name=q1]:checked').val() === "q1-other"){
+		$('.einschreibehinweis').show();
+	} else {
+		$('.einschreibehinweis').hide();
+	}
 
 	if(currentba()){
 		$('.question01').hide(400);
@@ -701,9 +713,11 @@ function next2(){
 
 	let currentlp = parseInt($('#q2-lp').val());
 	
+	console.log(currentlp);
+	
 	if(fsem === "-"){
 		alert("Bitte wähle ein Fachsemester aus :(((((");
-	}else if(currentlp === ""){
+	}else if(isNaN(currentlp)){
 		alert("Bitte gib eine Leistungspunktanzahl ein :(((((");
 	} else if(currentlp < parseInt($('#q2-lp').attr('min')) || currentlp > parseInt($('#q2-lp').attr('max'))){
 		alert("Bitte gib eine Zahl zwischen "+ $('#q2-lp').attr('min')+" und "+$('#q2-lp').attr('max')+" ein :((( ["+currentlp+"]");
@@ -791,17 +805,21 @@ function next6(){
 	}
 }
 function next7(){
-
-	let selection = $('input[name=q7]:checked').val();
-
-
-	$('.question07').hide(400);
-
-	if(selection == "q7-currentlyworking"){
-		$('.question08').show(400);
+	let checked = $('input[name=q7]:checked');
+	
+	if(checked.length < 1){	
+		alert("Bitte wähle eine Option aus :(");
 	} else {
-		$('input[name=q8]').prop("checked", false);
-		$('.sendresult').show(400);
+		let selection = checked.val();
+
+		$('.question07').hide(400);
+
+		if(selection == "q7-currentlyworking"){
+			$('.question08').show(400);
+		} else {
+			$('input[name=q8]').prop("checked", false);
+			$('.sendresult').show(400);
+		}
 	}
 }
 function back7(){
@@ -810,9 +828,12 @@ function back7(){
 }
 function next8(){
 	
-
-	$('.question08').hide(400);
-	$('.sendresult').show(400);
+	if($('input[name=q8]:checked').length < 1){	
+		alert("Bitte wähle eine Option aus :(");
+	} else {
+		$('.question08').hide(400);
+		$('.sendresult').show(400);
+	}
 }
 function back8(){
 	$('.question08').hide(400);
