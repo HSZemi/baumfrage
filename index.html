@@ -23,7 +23,7 @@ button{
 <div class="row">
 	<div class="col-9">
 		<h1>Befragung zum Studienfortschritt</h1>
-		<h4>Es ist so schön hier, deshalb will niemand fertig werden.</h4>
+		<h4>Na, wie läuft's?</h4>
 	</div>
 	<div class="col">
 		<p class="text-right"><img src="img/wusel.png" /></p>
@@ -37,13 +37,16 @@ button{
 			<div class="card-text">
 				<div class="row">
 					<div class="col">
-						<p>Nur ein verschwindend geringer Anteil unserer Bachelorstudierenden schließt das Studium innerhalb der Regelstudienzeit ab. Das ist an dieser Stelle erst einmal eine Feststellung ohne weitere Wertung.</p>
+						<p>Nur ein geringer Anteil unserer Bachelorstudierenden schließt das Studium innerhalb der Regelstudienzeit ab. Das ist zunächst einmal interessant.</p>
 						
 						<p>Fragt man nach den Ursachen hierfür, stellt sich heraus, dass viele <i>meinen</i>, zu wissen, woran das liegt, aber verlässliche Zahlen sucht man vergebens.</p>
 						
-						<p><strong>Wir als Fachschaft finden, dass es an der Zeit ist, zumindest das zu ändern.</strong> Deshalb bitten wir euch, durch die Beantwortung von maximal 7 Fragen eine Datenbasis zu schaffen, aus der im besten Fall eine Verbesserung der Studiensituation resultiert – versprechen wollen wir aber natürlich nichts. Vielleicht ist ja auch alles töfte?</p>
+						<p><strong>Wir als Fachschaft finden, dass es an der Zeit ist, zumindest das zu ändern.</strong> Deshalb bitten wir euch, durch die Beantwortung von maximal 7 Fragen eine Datenbasis zu schaffen, aus der im besten Fall eine Verbesserung der Studiensituation resultiert – versprechen können wir aber natürlich nichts. Vielleicht ist ja auch alles töfte?</p>
+						
+						<p>Falls ihr vorhabt, in Regelstudienzeit fertig zu werden oder es bereits wurdet, nehmt bitte ebenfalls teil. Auch eure Studienverläufe sind interessant!</p>
 						
 						<p>Obacht! Alle Angaben sind anonym und freiwillig.</p>
+						
 					</div>
 					<div class="col">
 						<p class="text-center"><img src="img/wusel_lehre.png" /></p>
@@ -100,8 +103,8 @@ button{
 				</label>
 			</div>
 
-			<button class="btn btn-primary" onclick="next1()">Weiter!</button>
 			<button class="btn btn-default" onclick="back1()">Zurück</button>
+			<button class="btn btn-primary" onclick="next1()">Weiter!</button>
 		</div>
 	</div>
 
@@ -124,8 +127,8 @@ button{
 			<p class="small">»<a href="https://basis.uni-bonn.de" target="_blank">Oh, da muss ich nachsehen!</a>«</p>
 		</div>
 		<div class="card-block">
-			<button class="btn btn-primary" onclick="next2()">Weiter!</button>
 			<button class="btn btn-default" onclick="back2()">Zurück</button>
+			<button class="btn btn-primary" onclick="next2()">Weiter!</button>
 		</div>
 	</div>
 
@@ -138,8 +141,8 @@ button{
 			<select id="q3-fsem">
 			</select>
 
-			<button class="btn btn-primary" onclick="next3()">Weiter!</button>
 			<button class="btn btn-default" onclick="back3()">Zurück</button>
+			<button class="btn btn-primary" onclick="next3()">Weiter!</button>
 		</div>
 	</div>
 
@@ -152,15 +155,15 @@ button{
 			<select id="q4-fsem">
 			</select>
 
-			<button class="btn btn-primary" onclick="next4()">Weiter!</button>
 			<button class="btn btn-default" onclick="back4()">Zurück</button>
+			<button class="btn btn-primary" onclick="next4()">Weiter!</button>
 
 		</div>
 	</div>
 
 
 	<div class="card question question05">
-		<div class="card-block" id="q5">
+		<div class="card-block q5" id="q5">
 			<h4 class="card-title">Wodurch hat sich dein Bachelorstudium verlängert?</h4>
 
 			<div class="form-check">
@@ -275,6 +278,12 @@ button{
 				<label for="q5-job-extra">Wie viele Stunden pro Woche wird/wurde durchschnittlich gearbeitet?</label>
 				<textarea class="form-control" id="q5-job-extra" rows="1"></textarea>
 			</div>
+			<div class="form-check">
+				<label class="form-check-label">
+					<input class="form-check-input" type="checkbox" name="q5" value="q5-future">
+					Ich will/wollte zuerst wissen, was ich danach mache, bevor ich das Studium abschließe.
+				</label>
+			</div>
 			
 			<div class="form-check">
 				<label class="form-check-label">
@@ -307,7 +316,7 @@ button{
 		</div>
 
 		<div class="card-block" id="q6">
-			<h4 class="card-title">Welche dieser Dinge treffen auf dich zu, haben dein Studium aber nicht verlängert?</h4>
+			<h4 class="card-title">Welche dieser Dinge treffen auf dich zu<span class="q5">, haben dein Studium aber nicht verlängert</span>?</h4>
 
 			<div class="form-check">
 				<label class="form-check-label">
@@ -452,8 +461,8 @@ button{
 			</div>
 		</div>
 		<div class="card-block">
-			<button class="btn btn-primary" onclick="next6()">Weiter!</button>
 			<button class="btn btn-default" onclick="back6()">Zurück</button>
+			<button class="btn btn-primary" onclick="next6()">Weiter!</button>
 		</div>
 	</div>
 
@@ -465,14 +474,32 @@ button{
 
 			<div class="form-check">
 				<label class="form-check-label">
+					<input class="form-check-input" type="radio" name="q7" value="q7-other">
+					Mit der Bachelorarbeit beschäftige ich mich noch nicht
+				</label>
+			</div>
+			<div class="form-check">
+				<label class="form-check-label">
 					<input class="form-check-input" type="radio" name="q7" value="q7-currentlyworking">
 					Ich arbeite aktuell an meiner Bachelorarbeit
 				</label>
 			</div>
 			<div class="form-check">
 				<label class="form-check-label">
+					<input class="form-check-input" type="radio" name="q7" value="q7-unsure">
+					Ich bin unsicher / traue mir die Bachelorarbeit aktuell noch nicht zu
+				</label>
+			</div>
+			<div class="form-check">
+				<label class="form-check-label">
+					<input class="form-check-input" type="radio" name="q7" value="q7-clueless">
+					Ich weiß nicht genau wo ich anfangen soll mit der Suche nach einer Bachelorarbeit
+				</label>
+			</div>
+			<div class="form-check">
+				<label class="form-check-label">
 					<input class="form-check-input" type="radio" name="q7" value="q7-search-supervision-topic">
-					Ich suche derzeit eine Betreuung und ein Thema für meine Bachelorarbeit
+					Ich suche derzeit aktiv eine Betreuung und ein Thema für meine Bachelorarbeit
 				</label>
 			</div>
 			<div class="form-check">
@@ -487,15 +514,9 @@ button{
 					Ich habe bereits ein Thema und suche dafür eine Betreuung
 				</label>
 			</div>
-			<div class="form-check">
-				<label class="form-check-label">
-					<input class="form-check-input" type="radio" name="q7" value="q7-other">
-					Nichts von alldem
-				</label>
-			</div>
 
-			<button class="btn btn-primary" onclick="next7()">Weiter!</button>
 			<button class="btn btn-default" onclick="back7()">Zurück</button>
+			<button class="btn btn-primary" onclick="next7()">Weiter!</button>
 
 		</div>
 	</div>
@@ -538,8 +559,8 @@ button{
 				</label>
 			</div>
 
-			<button class="btn btn-primary" onclick="next8()">Weiter!</button>
 			<button class="btn btn-default" onclick="back8()">Zurück</button>
+			<button class="btn btn-primary" onclick="next8()">Weiter!</button>
 
 		</div>
 	</div>
@@ -548,8 +569,8 @@ button{
 		<div class="card-block">
 			<h4 class="card-title">Fast geschafft!</h4>
 			<div class="card-text" id="sendbutton">
-				<button class="btn btn-primary" onclick="collect_data()">Daten absenden</button>
 			<button class="btn btn-default" onclick="back9()">Zurück</button>
+				<button class="btn btn-primary" onclick="collect_data()">Daten absenden</button>
 			</div>
 			<div class="card-text" id="transmitgif">
 				<p class="text-left"><img src="img/wusel_transmit.gif" /></p>
@@ -750,10 +771,10 @@ function next3(){
 	
 	if(isnotlate()){
 		$('input[name=q5]').prop("checked", false);
-		$('#q5 .additional-information').hide();
-		$('#q5').hide();
+		$('.q5 .additional-information').hide();
+		$('.q5').hide();
 	} else {
-		$('#q5').show();
+		$('.q5').show();
 	}
 
 	$('.question03').hide(400);
@@ -772,10 +793,10 @@ function next4(){
 	
 	if(isnotlate()){
 		$('input[name=q5]').prop("checked", false);
-		$('#q5 .additional-information').hide();
-		$('#q5').hide();
+		$('.q5 .additional-information').hide();
+		$('.q5').hide();
 	} else {
-		$('#q5').show();
+		$('.q5').show();
 	}
 	
 
@@ -847,7 +868,7 @@ function back8(){
 function back9(){
 	$('.sendresult').hide(400);
 	
-	if($('input[name=q8]:checked')){
+	if($('input[name=q8]:checked').length > 0){
 		$('.question08').show(400);
 	} else {
 		$('.question07').show(400);
