@@ -278,6 +278,7 @@ button{
 				<label for="q5-job-extra">Wie viele Stunden pro Woche wird/wurde durchschnittlich gearbeitet?</label>
 				<textarea class="form-control" id="q5-job-extra" rows="1"></textarea>
 			</div>
+			
 			<div class="form-check">
 				<label class="form-check-label">
 					<input class="form-check-input" type="checkbox" name="q5" value="q5-future">
@@ -429,6 +430,13 @@ button{
 			<div class="form-group additional-information">
 				<label for="q6-job-extra">Wie viele Stunden pro Woche wird/wurde durchschnittlich gearbeitet?</label>
 				<textarea class="form-control" id="q6-job-extra" rows="1"></textarea>
+			</div>
+			
+			<div class="form-check">
+				<label class="form-check-label">
+					<input class="form-check-input" type="checkbox" name="q6" value="q6-future">
+					Ich will/wollte zuerst wissen, was ich danach mache, bevor ich das Studium abschließe.
+				</label>
 			</div>
 			
 			<div class="form-check">
@@ -733,8 +741,6 @@ function next2(){
 
 	let currentlp = parseInt($('#q2-lp').val());
 	
-	console.log(currentlp);
-	
 	if(fsem === "-"){
 		alert("Bitte wähle ein Fachsemester aus :(((((");
 	}else if(isNaN(currentlp)){
@@ -901,6 +907,7 @@ function collect_data(){
 		"q5-long-project-group":{"checked":false,"extra":""},
 		"q5-thesis-problems":{"checked":false,"extra":""},
 		"q5-job":{"checked":false,"extra":""},
+		"q5-future":{"checked":false,"extra":""},
 		"q5-family":{"checked":false,"extra":""},
 		"q5-planned":{"checked":false,"extra":""},
 		"q5-other":{"checked":false,"extra":""}
@@ -928,6 +935,7 @@ function collect_data(){
 		"q6-long-project-group":{"checked":false,"extra":""},
 		"q6-thesis-problems":{"checked":false,"extra":""},
 		"q6-job":{"checked":false,"extra":""},
+		"q6-future":{"checked":false,"extra":""},
 		"q6-family":{"checked":false,"extra":""},
 		"q6-planned":{"checked":false,"extra":""},
 		"q6-other":{"checked":false,"extra":""}
